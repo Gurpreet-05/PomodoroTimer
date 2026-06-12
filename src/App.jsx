@@ -71,6 +71,22 @@ const App = () => {
   const [isActive, setIsActive] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
+  const handleStartPause = useCallback(async () => {
+    // If we are currently active, just PAUSE
+    if (isActive) {
+      setIsActive(false);
+      return;
+    }
+
+    // If we are starting, check for notifications FIRST
+    if (Notification.permission === 'default') {
+      await Notification.requestPermission();
+    }
+    
+    // Then start the timer
+    setIsActive(true);
+  }, [isActive]);
+
   useEffect(() => {
     document.body.className = `theme-${settings.theme}`;
   }, [settings.theme]);
@@ -149,7 +165,7 @@ const App = () => {
       if (mode === 'shortBreak') setTimeLeft(settings.shortBreak * 60);
       if (mode === 'longBreak') setTimeLeft(settings.longBreak * 60);
     }
-  }, [settings, mode, isActive]);
+  }, [settings, mode]);
 
   // RESTORED: Reset Timer Function
   const resetTimer = () => {
@@ -186,11 +202,14 @@ const App = () => {
       </div>
 
       <div className="controls">
-        <button className="primary" onClick={() => setIsActive(!isActive)}>
+        {/* Use the new handleStartPause function here! */}
+        <button className="primary" onClick={handleStartPause}>
           {isActive ? 'PAUSE' : 'START'}
         </button>
-        {/* RESTORED: Reset Button */}
+        
         <button onClick={resetTimer}>RESET</button>
+        
+        {/* Updated SKIP button to use switchMode directly */}
         <button onClick={() => { setIsActive(false); switchMode(); }}>SKIP</button>
       </div>
 
