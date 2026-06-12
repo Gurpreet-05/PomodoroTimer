@@ -1,184 +1,219 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+/* App.css */
+:root {
+  --bg-color: #0a192f;
+  --text-color: #e6f1ff;
+  --accent-color: #64ffda;
+  --container-bg: #112240;
 }
 
-.hero {
-  position: relative;
 
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
   display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
+.app-container {
+  background-color: var(--container-bg);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
   width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
 }
+
+.status-badge {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.timer-display {
+  font-size: 5rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.cycles {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+button {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 2px solid var(--accent-color);
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
+button.primary {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
+button.primary:hover {
+  opacity: 0.9;
+}
+
+/* Settings Panel */
+.settings-panel {
+  text-align: left;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.settings-group {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-group input, .settings-group select {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--accent-color);
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: 60px;
+}
+
+.settings-group select {
+  width: auto;
+}
+
+/* Injecting the Character Visually */
+.app-container {
+  position: relative;
+  /* ... keep your existing app-container styles ... */
+}
+
+/* This adds the character icon to the top right of the timer */
+.app-container::before {
+  content: var(--character-icon, '');
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  opacity: 0.8;
+}
+/* --- 1. Classic Navy (Default) --- */
+:root, body.theme-navy {
+  --bg-color: #0a192f;
+  --text-color: #e6f1ff;
+  --accent-color: #64ffda;
+  --container-bg: #112240;
+  background: var(--bg-color);
+}
+
+/* --- 2. Deep Green --- */
+body.theme-green {
+  --bg-color: #002b1d;
+  --text-color: #e8f5e9;
+  --accent-color: #4caf50;
+  --container-bg: #003d29;
+  background: var(--bg-color);
+}
+
+/* --- 3. Light Blue --- */
+body.theme-lightblue {
+  --bg-color: #e3f2fd;
+  --text-color: #0d47a1;
+  --accent-color: #1976d2;
+  --container-bg: #bbdefb;
+  background: var(--bg-color);
+}
+
+/* --- The Image Environments --- */
+
+/* Grouping the variables for all image themes so white text stays readable */
+.theme-space, .theme-forest, .theme-city, .theme-terminal, .theme-geometry, .theme-desk {
+  --text-color: #ffffff;
+  --accent-color: #64ffda; 
+  --container-bg: rgba(17, 34, 64, 0.75); /* The dark glass tint */
+}
+
+.theme-space {
+  background: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2000') center/cover fixed;
+}
+
+.theme-forest {
+  background: url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=2000') center/cover fixed;
+}
+
+.theme-city {
+  background: url('https://images.unsplash.com/photo-1555448248-2571daf6344b?q=80&w=2000') center/cover fixed;
+}
+
+.theme-terminal {
+  background: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2000') center/cover fixed;
+}
+
+.theme-geometry {
+  background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2000') center/cover fixed;
+}
+
+.theme-desk {
+  background: url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2000') center/cover fixed;
+}
+
+.theme-cafe {
+  --accent-color: #ffb74d; 
+  background: url('https://images.unsplash.com/photo-1525610553991-2bede1a236e2?q=80&w=2000') center/cover fixed;
+}
+
+/* Deep Ocean / Zen */
+.theme-ocean {
+  --accent-color: #4dd0e1; /* Bioluminescent cyan */
+  background: url('https://images.unsplash.com/photo-1551405780-03882d5a2ba7?q=80&w=2000') center/cover fixed;
+}
+
+/* Synthwave / Vaporwave 80s */
+.theme-synthwave {
+  --accent-color: #ff4081; /* Neon pink */
+  background: url('https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?q=80&w=2000') center/cover fixed;
+}
+
+/* Dark Academia / Old Library */
+.theme-library {
+  --accent-color: #d4af37; /* Vintage gold */
+  background: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000') center/cover fixed;
+}
+/* Ensure container allows the background to show through */
+.app-container {
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* The "Glassmorphism" effect */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
