@@ -147,18 +147,26 @@ const App = () => {
 
   useEffect(() => {
     let interval = null;
-    
-    if (isActive && timeLeft > 0) {
+
+    if (isActive) {
+      // Store the target end time
+      const endTime = Date.now() + timeLeft * 1000;
+
       interval = setInterval(() => {
-        setTimeLeft((prevTime) => prevTime - 1);
-      }, 1000);
-    } else if (isActive && timeLeft === 0) {
-      switchMode();
+        const remaining = Math.round((endTime - Date.now()) / 1000);
+        
+        if (remaining <= 0) {
+          clearInterval(interval);
+          setTimeLeft(0);
+          switchMode();
+        } else {
+          setTimeLeft(remaining);
+        }
+      }, 500); // Check every 500ms for high precision
     }
 
     return () => clearInterval(interval);
-  }, [isActive, timeLeft, switchMode]);
-
+  }, [isActive, switchMode]); // timeLeft removed from dependency array
   useEffect(() => {
     if (!isActive) {
       if (mode === 'focus') setTimeLeft(settings.focus * 60);
